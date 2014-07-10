@@ -207,9 +207,9 @@
         // login is integrated with the send button -- so if open, we send
         [self sendRequests];
     } else {
-        NSArray *permissions = @[@"public_profile", @"email"];
+        NSArray *permissions = @[];
         [FBSession openActiveSessionWithReadPermissions:permissions
-                                           allowLoginUI:YES
+                                           allowLoginUI:NO
                                       completionHandler:^(FBSession *session,
                                                           FBSessionState status,
                                                           NSError *error) {
@@ -256,7 +256,7 @@
     NSMutableDictionary* mutDict = [NSMutableDictionary new];
     mutDict[@"limit"] = @"100";
     FBRequest *request = [[FBRequest alloc] initWithSession:FBSession.activeSession
-                                                  graphPath:@"me/posts" parameters:mutDict HTTPMethod:@"GET"];
+                                                  graphPath:@"me/friends" parameters:mutDict HTTPMethod:@"GET"];
     
     // add the request to the connection object, if more than one request is added
     // the connection object will compose the requests as a batch request; whether or
